@@ -27,7 +27,7 @@ def search_qdrant(query_text, limit=2):
     # Search the collection
     try:
         search_results = qdrant_client.search(
-            collection_name="example_Egypt",
+            collection_name="bitcoin_kb",
             query_vector=query_embedding,
             limit=limit,
             with_payload=True
@@ -39,8 +39,10 @@ def search_qdrant(query_text, limit=2):
         for result in search_results:
             print(f"ID: {result.id}")
             print(f"Score: {result.score:.4f}")
-            print(f"Text: {result.payload['text']}")
-            print("---")
+            # print(f"Text: {result.payload['text']}")
+            print(f"Title: {result.payload['title']}")
+            print(f"Text: {result.payload['text']}...")
+            # print("---")
         return search_results
     except Exception as e:
         print(f"Error searching Qdrant: {e}")
@@ -48,9 +50,11 @@ def search_qdrant(query_text, limit=2):
 
 if __name__ == "__main__":
     queries = [
-       "When did Ancient Egypt begin?",
-        "Who was Cleopatra?",
-        "How did Egypt become part of the Islamic world?"
+        # "Who created Bitcoin?",
+        # "What happened in 2017 with Bitcoin?",
+        # "Bitcoin Price Trajectory"
+        # "The Enigmatic Creator: Satoshi Nakamoto"
+        "What is Bitcoin Pizza Day?"
     ]
     
     for query in queries:
